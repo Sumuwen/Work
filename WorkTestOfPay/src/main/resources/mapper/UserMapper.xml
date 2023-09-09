@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sumuwen.boot.dao.UserDao">
+    <select id="getBalance" parameterType="Integer" resultType="double">
+        select balance from wallet where uid = #{uid}
+    </select>
+
+    <insert id="registration" parameterType="Detail" useGeneratedKeys="true" keyProperty="did">
+        insert into detail values(null,#{detail.uid},#{detail.income},
+                                  #{detail.expenditure},#{detail.refund},#{detail.date})
+    </insert>
+
+    <update id="updateBalance" parameterType="User">
+        update wallet set balance = #{user.balance} where uid = #{user.uid}
+    </update>
+</mapper>
